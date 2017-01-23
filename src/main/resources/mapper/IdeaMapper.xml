@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.buy.dao.IdeaMapper" >
+  <resultMap id="BaseResultMap" type="com.nan.buy.model.Idea" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+    <result column="c_header" property="cHeader" jdbcType="VARCHAR" />
+    <result column="new_message" property="newMessage" jdbcType="VARCHAR" />
+    <result column="re_message" property="reMessage" jdbcType="VARCHAR" />
+    <result column="new_time" property="newTime" jdbcType="CHAR" />
+    <result column="re_time" property="reTime" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_name, c_header, new_message, re_message, new_time, re_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from idea
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from idea
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nan.buy.model.Idea" >
+    insert into idea (id, c_name, c_header, 
+      new_message, re_message, new_time, 
+      re_time)
+    values (#{id,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{cHeader,jdbcType=VARCHAR}, 
+      #{newMessage,jdbcType=VARCHAR}, #{reMessage,jdbcType=VARCHAR}, #{newTime,jdbcType=CHAR}, 
+      #{reTime,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nan.buy.model.Idea" >
+    insert into idea
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cName != null" >
+        c_name,
+      </if>
+      <if test="cHeader != null" >
+        c_header,
+      </if>
+      <if test="newMessage != null" >
+        new_message,
+      </if>
+      <if test="reMessage != null" >
+        re_message,
+      </if>
+      <if test="newTime != null" >
+        new_time,
+      </if>
+      <if test="reTime != null" >
+        re_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null" >
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cHeader != null" >
+        #{cHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="newMessage != null" >
+        #{newMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reMessage != null" >
+        #{reMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="newTime != null" >
+        #{newTime,jdbcType=CHAR},
+      </if>
+      <if test="reTime != null" >
+        #{reTime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nan.buy.model.Idea" >
+    update idea
+    <set >
+      <if test="cName != null" >
+        c_name = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cHeader != null" >
+        c_header = #{cHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="newMessage != null" >
+        new_message = #{newMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reMessage != null" >
+        re_message = #{reMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="newTime != null" >
+        new_time = #{newTime,jdbcType=CHAR},
+      </if>
+      <if test="reTime != null" >
+        re_time = #{reTime,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nan.buy.model.Idea" >
+    update idea
+    set c_name = #{cName,jdbcType=VARCHAR},
+      c_header = #{cHeader,jdbcType=VARCHAR},
+      new_message = #{newMessage,jdbcType=VARCHAR},
+      re_message = #{reMessage,jdbcType=VARCHAR},
+      new_time = #{newTime,jdbcType=CHAR},
+      re_time = #{reTime,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

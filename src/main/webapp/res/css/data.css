@@ -1,0 +1,42 @@
+body {
+	font-size: 12px;
+}
+
+table {
+	margin: 0;
+	padding: 2px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #dddddd;
+}
+
+th {
+	text-align: center;
+	font-size: 10;
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-color: #dddddd;
+	margin: 0;
+	padding: 0;
+}
+
+td {
+	height:25px;
+	text-align: center;
+	border-width: 0 1px 1px 0;
+	border-style: dotted;
+	margin: 0;
+	padding: 0;
+}
+
+thead tr {
+	height:30px;
+	background-color: #efefef;
+	background: -webkit-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+	background: -moz-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+	background: -o-linear-gradient(top, #F9F9F9 0, #efefef 100%);
+	background: linear-gradient(to bottom, #F9F9F9 0, #efefef 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,
+		endColorstr=#efefef, GradientType=0);
+}

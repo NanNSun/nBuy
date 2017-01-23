@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.buy.dao.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.nan.buy.model.Notice" >
+    <id column="n_id" property="nId" jdbcType="VARCHAR" />
+    <result column="n_message" property="nMessage" jdbcType="VARCHAR" />
+    <result column="n_admin" property="nAdmin" jdbcType="VARCHAR" />
+    <result column="n_header" property="nHeader" jdbcType="VARCHAR" />
+    <result column="n_time" property="nTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_id, n_message, n_admin, n_header, n_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice
+    where n_id = #{nId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from notice
+    where n_id = #{nId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nan.buy.model.Notice" >
+    insert into notice (n_id, n_message, n_admin, 
+      n_header, n_time)
+    values (#{nId,jdbcType=VARCHAR}, #{nMessage,jdbcType=VARCHAR}, #{nAdmin,jdbcType=VARCHAR}, 
+      #{nHeader,jdbcType=VARCHAR}, #{nTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nan.buy.model.Notice" >
+    insert into notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nId != null" >
+        n_id,
+      </if>
+      <if test="nMessage != null" >
+        n_message,
+      </if>
+      <if test="nAdmin != null" >
+        n_admin,
+      </if>
+      <if test="nHeader != null" >
+        n_header,
+      </if>
+      <if test="nTime != null" >
+        n_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nId != null" >
+        #{nId,jdbcType=VARCHAR},
+      </if>
+      <if test="nMessage != null" >
+        #{nMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="nAdmin != null" >
+        #{nAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="nHeader != null" >
+        #{nHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="nTime != null" >
+        #{nTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nan.buy.model.Notice" >
+    update notice
+    <set >
+      <if test="nMessage != null" >
+        n_message = #{nMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="nAdmin != null" >
+        n_admin = #{nAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="nHeader != null" >
+        n_header = #{nHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="nTime != null" >
+        n_time = #{nTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nan.buy.model.Notice" >
+    update notice
+    set n_message = #{nMessage,jdbcType=VARCHAR},
+      n_admin = #{nAdmin,jdbcType=VARCHAR},
+      n_header = #{nHeader,jdbcType=VARCHAR},
+      n_time = #{nTime,jdbcType=VARCHAR}
+    where n_id = #{nId,jdbcType=VARCHAR}
+  </update>
+</mapper>

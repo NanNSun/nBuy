@@ -1,0 +1,78 @@
+.error-main {
+	border: 1px solid #9DADC5;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	position: relative;
+	background: #dedede;
+	padding: 0;
+}
+
+h1.error-title {
+	font-size: 16px;
+	text-align: center;
+	margin: 10px auto;
+	color: #e000b8;
+}
+
+.error-icon {
+	float: left;
+	margin:0 5px;
+	width: 80px;
+	height: 100%;
+	display: block;
+}
+
+.error-split {
+	float: left;
+	width: 3px;
+	height: 100%;
+	display: block;
+	background:  url("error/split.png") center center no-repeat;
+}
+
+.error-text {
+	float:right;
+	margin-right: 5px;
+	overflow: auto;
+	display:block;
+	font-size: 12px;
+	color: #ee6666;
+	padding: 2px;
+	border: 1px solid #bbbbbb;
+	background:#eeeeee;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+}
+
+.error-icon div {
+	width:80px;
+	height: 100%;
+	margin: auto;
+	display: block;
+}
+
+.error-type0 {
+	background: url("error/error0.png") center center no-repeat;
+}
+.error-type1 {
+	background: url("error/error1.png") center center no-repeat;
+}
+.error-type2 {
+	background: url("error/error2.png") center center no-repeat;
+}
+.error-type3 {
+	background: url("error/error3.png") center center no-repeat;
+}
+
+.error-button {
+	text-align: right;
+	padding-right: 20px;
+}
+
+button {
+	cursor: pointer;	
+}

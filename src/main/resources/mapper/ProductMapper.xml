@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.buy.dao.ProductMapper">
+	<resultMap id="BaseResultMap" type="com.nan.buy.model.Product">
+		<id column="p_id" property="pId" jdbcType="CHAR" />
+		<result column="p_type" property="pType" jdbcType="VARCHAR" />
+		<result column="p_name" property="pName" jdbcType="VARCHAR" />
+		<result column="p_price" property="pPrice" jdbcType="DOUBLE" />
+		<result column="p_quantity" property="pQuantity" jdbcType="INTEGER" />
+		<result column="p_image" property="pImage" jdbcType="VARCHAR" />
+		<result column="p_time" property="pTime" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.nan.buy.model.Product"
+		extends="BaseResultMap">
+		<result column="p_description" property="pDescription"
+			jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		p_id, p_type, p_name, p_price, p_quantity, p_image, p_time
+	</sql>
+	<sql id="Blob_Column_List">
+		p_description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from product
+		where p_id = #{pId,jdbcType=CHAR}
+	</select>
+	<select id="selectProduct" resultMap="ResultMapWithBLOBs">
+		select * from product
+	</select>
+	<select id="selectProductByName" resultMap="ResultMapWithBLOBs">
+		select * from product
+		<where>
+			p_name like '%'||#{pName}||'%'
+		</where>
+	</select>
+	<select id="selectProductByPType" resultMap="ResultMapWithBLOBs">
+		select * from product
+		<where>
+			p_type like '%'||#{pType}||'%'
+		</where>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from product
+		where p_id = #{pId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.nan.buy.model.Product">
+		insert into product (p_id, p_type, p_name,
+		p_price, p_quantity, p_image,
+		p_time, p_description)
+		values (#{pId,jdbcType=CHAR}, #{pType,jdbcType=VARCHAR},
+		#{pName,jdbcType=VARCHAR},
+		#{pPrice,jdbcType=DOUBLE}, #{pQuantity,jdbcType=INTEGER}, #{pImage,jdbcType=VARCHAR},
+		#{pTime,jdbcType=VARCHAR}, #{pDescription,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.nan.buy.model.Product">
+		insert into product
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pId != null">
+				p_id,
+			</if>
+			<if test="pType != null">
+				p_type,
+			</if>
+			<if test="pName != null">
+				p_name,
+			</if>
+			<if test="pPrice != null">
+				p_price,
+			</if>
+			<if test="pQuantity != null">
+				p_quantity,
+			</if>
+			<if test="pImage != null">
+				p_image,
+			</if>
+			<if test="pTime != null">
+				p_time,
+			</if>
+			<if test="pDescription != null">
+				p_description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pId != null">
+				#{pId,jdbcType=CHAR},
+			</if>
+			<if test="pType != null">
+				#{pType,jdbcType=VARCHAR},
+			</if>
+			<if test="pName != null">
+				#{pName,jdbcType=VARCHAR},
+			</if>
+			<if test="pPrice != null">
+				#{pPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="pQuantity != null">
+				#{pQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="pImage != null">
+				#{pImage,jdbcType=VARCHAR},
+			</if>
+			<if test="pTime != null">
+				#{pTime,jdbcType=VARCHAR},
+			</if>
+			<if test="pDescription != null">
+				#{pDescription,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.nan.buy.model.Product">
+		update product
+		<set>
+			<if test="pType != null">
+				p_type = #{pType,jdbcType=VARCHAR},
+			</if>
+			<if test="pName != null">
+				p_name = #{pName,jdbcType=VARCHAR},
+			</if>
+			<if test="pPrice != null">
+				p_price = #{pPrice,jdbcType=DOUBLE},
+			</if>
+			<if test="pQuantity != null">
+				p_quantity = #{pQuantity,jdbcType=INTEGER},
+			</if>
+			<if test="pImage != null">
+				p_image = #{pImage,jdbcType=VARCHAR},
+			</if>
+			<if test="pTime != null">
+				p_time = #{pTime,jdbcType=VARCHAR},
+			</if>
+			<if test="pDescription != null">
+				p_description = #{pDescription,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where p_id = #{pId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nan.buy.model.Product">
+		update product
+		set p_type = #{pType,jdbcType=VARCHAR},
+		p_name = #{pName,jdbcType=VARCHAR},
+		p_price = #{pPrice,jdbcType=DOUBLE},
+		p_quantity = #{pQuantity,jdbcType=INTEGER},
+		p_image = #{pImage,jdbcType=VARCHAR},
+		p_time = #{pTime,jdbcType=VARCHAR},
+		p_description = #{pDescription,jdbcType=LONGVARCHAR}
+		where p_id = #{pId,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.nan.buy.model.Product">
+		update product
+		set p_type = #{pType,jdbcType=VARCHAR},
+		p_name = #{pName,jdbcType=VARCHAR},
+		p_price = #{pPrice,jdbcType=DOUBLE},
+		p_quantity = #{pQuantity,jdbcType=INTEGER},
+		p_image = #{pImage,jdbcType=VARCHAR},
+		p_time = #{pTime,jdbcType=VARCHAR}
+		where p_id = #{pId,jdbcType=CHAR}
+	</update>
+</mapper>

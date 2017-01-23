@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nan.buy.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.nan.buy.model.Admin" >
+    <id column="a_id" property="aId" jdbcType="VARCHAR" />
+    <result column="a_name" property="aName" jdbcType="VARCHAR" />
+    <result column="a_pass" property="aPass" jdbcType="VARCHAR" />
+    <result column="a_header" property="aHeader" jdbcType="VARCHAR" />
+    <result column="a_phone" property="aPhone" jdbcType="CHAR" />
+    <result column="a_email" property="aEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_id, a_name, a_pass, a_header, a_phone, a_email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectForLogin" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from admin
+    where a_name = #{aName,jdbcType=VARCHAR} and a_pass = #{aPass,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from admin
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nan.buy.model.Admin" >
+    insert into admin (a_id, a_name, a_pass, 
+      a_header, a_phone, a_email
+      )
+    values (#{aId,jdbcType=VARCHAR}, #{aName,jdbcType=VARCHAR}, #{aPass,jdbcType=VARCHAR}, 
+      #{aHeader,jdbcType=VARCHAR}, #{aPhone,jdbcType=CHAR}, #{aEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nan.buy.model.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aName != null" >
+        a_name,
+      </if>
+      <if test="aPass != null" >
+        a_pass,
+      </if>
+      <if test="aHeader != null" >
+        a_header,
+      </if>
+      <if test="aPhone != null" >
+        a_phone,
+      </if>
+      <if test="aEmail != null" >
+        a_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null" >
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPass != null" >
+        #{aPass,jdbcType=VARCHAR},
+      </if>
+      <if test="aHeader != null" >
+        #{aHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null" >
+        #{aPhone,jdbcType=CHAR},
+      </if>
+      <if test="aEmail != null" >
+        #{aEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nan.buy.model.Admin" >
+    update admin
+    <set >
+      <if test="aName != null" >
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPass != null" >
+        a_pass = #{aPass,jdbcType=VARCHAR},
+      </if>
+      <if test="aHeader != null" >
+        a_header = #{aHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="aPhone != null" >
+        a_phone = #{aPhone,jdbcType=CHAR},
+      </if>
+      <if test="aEmail != null" >
+        a_email = #{aEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nan.buy.model.Admin" >
+    update admin
+    set a_name = #{aName,jdbcType=VARCHAR},
+      a_pass = #{aPass,jdbcType=VARCHAR},
+      a_header = #{aHeader,jdbcType=VARCHAR},
+      a_phone = #{aPhone,jdbcType=CHAR},
+      a_email = #{aEmail,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+</mapper>
